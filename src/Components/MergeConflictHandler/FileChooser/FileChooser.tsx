@@ -1,6 +1,6 @@
-import ConflictResolver from "../MergeConflictResolver/ConflictResolver";
+import { FileWithConflicts } from "../FileTypes";
 
-const FileChooser = ({ files, choosingHandler }: { files: ConflictResolver[]; choosingHandler: (File: ConflictResolver) => void }) => {    
+const FileChooser = ({ files, choosingHandler }: { files: FileWithConflicts[]; choosingHandler: (File: FileWithConflicts) => void }) => {    
     return <div className="">
         {files.map((file, index) => {
             return <div key={index} className="fileButton" style={{cursor:"pointer"}} onClick={() => {

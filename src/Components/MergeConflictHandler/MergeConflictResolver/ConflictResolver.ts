@@ -1,4 +1,4 @@
-import File from "../../File";
+import File from "../../../File";
 
 const regexSearchConflicts = /(<<<<<<<[^(>>>>>>>)]*>>>>>>>.*)/g;
 const regexConflict = /<<<<<<< [^\n]*\n([\s\S]*)\n=======\n([\s\S]*)>>>>>>>[^\n]*/m;
