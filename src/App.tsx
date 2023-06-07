@@ -7,7 +7,48 @@ import File from "./File";
 import MergeButton from "./Components/MergeButton/MergeButton";
 import ConflictResolver from "./Components/MergeConflictResolver/ConflictResolver";
 
-function App({ rawFiles }: { rawFiles: File[] }) {
+const rawFiles: File[] = [
+	{
+		name: "file1",
+		content: `file 1
+If you have questions, please 
+<<<<<<< HEAD
+open an issue
+=======
+ask your question in IRC.
+>>>>>>> branch-a
+I am
+<<<<<<< HEAD
+tomato
+=======
+potato
+>>>>>>> branch-a
+wqeqw`,
+	},
+	{
+		name: "file2",
+		content: `file 2
+If you have questions, please 
+<<<<<<< HEAD
+call me maybe
+=======
+fqwdfuquwyduqwdyfuwqyduqdgqugdqu
+>>>>>>> branch-a`,
+	},
+	{
+		name: "file3",
+		content: `file 3
+<<<<<<< HEAD
+If you have questions, please 
+open an issue
+=======
+I don't have problems
+>>>>>>> branch-a`,
+	},
+];
+
+
+function App() {
 	const [files] = useState(rawFiles.map((file) => {
 		return new ConflictResolver(file);
 	}));
