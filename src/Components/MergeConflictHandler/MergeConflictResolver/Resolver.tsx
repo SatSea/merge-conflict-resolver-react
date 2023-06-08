@@ -3,13 +3,13 @@ import { Conflict } from "../FileTypes";
 
 const regexForMergeConflicts = /<<<<<<< [^\n]*\n([\s\S]*)\n=======\n([\s\S]*)>>>>>>> [^\n]*/;
 
-const Resolver = ({ conflict, onSomethingChanged }: { conflict: Conflict, onSomethingChanged: () => void }) => {
+const Resolver = ({ conflict, onSomethingChanged }: { conflict: Conflict; onSomethingChanged: () => void }) => {
 	const [conflictState, setConflict] = useState(conflict);
 
 	useEffect(() => {
-		console.log("something changed")
+		console.log("something changed");
 		setConflict(conflict);
-		onSomethingChanged()
+		onSomethingChanged();
 	}, [conflict.resolved]);
 
 	if (conflictState.resolved) {

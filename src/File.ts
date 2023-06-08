@@ -1,5 +1,5 @@
 type File = {
-	name: string,
+	name: string;
 	content: string;
 };
 

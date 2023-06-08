@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import Resolver from "./Resolver";
 import { FileWithConflicts, Conflict } from "../FileTypes";
 
-const MergeConflictResolver = ({ fileWithConflict, onSomethingChanged }: { fileWithConflict: FileWithConflicts, onSomethingChanged: () => void }) => {
+const MergeConflictResolver = ({
+	fileWithConflict,
+	onSomethingChanged,
+}: {
+	fileWithConflict: FileWithConflicts;
+	onSomethingChanged: () => void;
+}) => {
 	return (
 		<div className="">
 			{fileWithConflict.content.map((file, index) =>
