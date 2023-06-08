@@ -1,0 +1,76 @@
+.MergeConflictHandler {
+	background-color: #252c3c;
+	display: flex;
+	gap: 5rem;
+	text-align: left;
+	height: 900px;
+	width: 75vw;
+	padding: 0.5rem;
+}
+.FileChooser {
+	width: 15%;
+	text-align: center;
+}
+.FileButton {
+	cursor: pointer;
+}
+.ActiveFile {
+	opacity: 0.6;
+	cursor: default;
+}
+.ConflictedString, .ResolvedString {
+    opacity: 0.85;
+    margin: 0;
+    padding: .25rem 0;
+    text-wrap: wrap;
+}
+.TopPartConflict .ConflictedString {
+    background-color: #2b3c56;
+}
+.Separator {
+    background-color: #393d46;
+    height: .8rem;
+}
+.BottomPartConflict .ConflictedString {
+    background-color: #432f54;
+}
+.ButtonConflict {
+    border: none;
+    border-radius: var(--radius-block);
+    padding: .4rem .25rem;
+    color: white;
+    font-size: 1.05rem;
+}
+.TopPartConflict .ButtonConflict {
+    background-color: #3a9ffb;
+    margin-bottom: .5rem;
+}
+.BottomPartConflict .ButtonConflict {
+    background-color: #d338f8;
+    margin-top: .5rem;
+}
+.TopPartConflict {
+    background-color: #2f5579;
+    border-radius: var(--radius-block) var(--radius-block) 0 0;
+}
+.BottomPartConflict {
+    background-color: #65317c;
+    border-radius: 0 0 var(--radius-block) var(--radius-block);
+}
+.MergeConflictor {
+    width: 100%;
+}
+.ConflictButtonContainer {
+    padding: .5rem;
+}
+.TopMerge {
+    background-color: #2f5579;
+}
+.BottomMerge {
+    background-color: #65317c;
+}
+.ResolvedString {
+    padding: .5rem 2rem;
+    border-radius: var(--radius-block);
+    margin-bottom: 1rem;
+}

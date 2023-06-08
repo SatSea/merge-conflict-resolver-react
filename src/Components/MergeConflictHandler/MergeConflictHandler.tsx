@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FileChooser from "./FileChooser/FileChooser";
 import MergeConflictResolver from "./MergeConflictResolver/MergeConflictResolver";
 import MergeButton from "./MergeButton/MergeButton";
 import File from "../../File";
-import { Conflict, FileWithConflicts, Part } from "./FileTypes";
+import { Conflict, FileWithConflicts } from "./FileTypes";
+import "./MergeConflictHandler.css"
+import './vars.css'
 
 const regexForUnresolvedMergeConflicts = /(<<<<<<<[^(>>>>>>>)]*>>>>>>>.*)/g;
 
@@ -39,6 +41,7 @@ const MergeConflictHandler = ({ rawFiles, onReady }: { rawFiles: File[]; onReady
 		<div className="MergeConflictHandler">
 			<FileChooser
 				files={files}
+				choosedFile={choosedFile}
 				choosingHandler={(file: FileWithConflicts) => {
 					setChoosedFile(file);
 				}}

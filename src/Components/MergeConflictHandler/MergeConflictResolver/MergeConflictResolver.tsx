@@ -10,7 +10,7 @@ const MergeConflictResolver = ({
 	onSomethingChanged: () => void;
 }) => {
 	return (
-		<div className="">
+		<div className="MergeConflictor">
 			{fileWithConflict.content.map((file, index) =>
 				file.type == "conflict" ? (
 					<Resolver key={index} conflict={file as Conflict} onSomethingChanged={() => onSomethingChanged()} />

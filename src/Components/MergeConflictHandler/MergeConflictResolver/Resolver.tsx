@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Conflict } from "../FileTypes";
+import Button from "../Button/Button";
+import { ButtonStyle } from "../Button/ButtonStyle";
 
 const regexForMergeConflicts = /<<<<<<< [^\n]*\n([\s\S]*)\n=======\n([\s\S]*)>>>>>>> [^\n]*/;
 
@@ -7,7 +9,6 @@ const Resolver = ({ conflict, onSomethingChanged }: { conflict: Conflict; onSome
 	const [conflictState, setConflict] = useState(conflict);
 
 	useEffect(() => {
-		console.log("something changed");
 		setConflict(conflict);
 		onSomethingChanged();
 	}, [conflict.resolved]);
@@ -15,15 +16,18 @@ const Resolver = ({ conflict, onSomethingChanged }: { conflict: Conflict; onSome
 	if (conflictState.resolved) {
 		return (
 			<div className="Resolved">
-				<div className="ResolvedString">{conflict.isTopPart ? conflict.topPart : conflict.bottomPart}</div>
-				<button
-					onClick={() => {
-						conflict.resolved = false;
-						setConflict({ ...conflict });
-					}}
-				>
-					Отменить
-				</button>
+				<pre className={"ResolvedString " + (conflict.isTopPart ? "TopMerge" : "BottomMerge")}>
+					{conflict.isTopPart ? conflict.topPart : conflict.bottomPart}
+				</pre>
+				<Button
+						style={conflict.isTopPart ? ButtonStyle.topMerge: ButtonStyle.BottomMerge}
+						onClick={() => {
+							conflict.resolved = false;
+							setConflict({ ...conflict });
+						}}
+					>
+						Отменить
+					</Button>
 			</div>
 		);
 	}
@@ -32,30 +36,36 @@ const Resolver = ({ conflict, onSomethingChanged }: { conflict: Conflict; onSome
 
 	return (
 		<div className="ConflictResolver">
-			<div className="TopPartConflict" style={{ backgroundColor: "blue" }}>
-				<button
-					onClick={() => {
-						conflict.isTopPart = true;
-						conflict.resolved = true;
-						setConflict({ ...conflict });
-					}}
-				>
-					Выбрать верхнюю
-				</button>
-				<div className="ConflictedString">{conflict.topPart}</div>
+			<div className="TopPartConflict">
+				<div className="ConflictButtonContainer">
+					<Button
+						style={ButtonStyle.topMerge}
+						onClick={() => {
+							conflict.isTopPart = true;
+							conflict.resolved = true;
+							setConflict({ ...conflict });
+						}}
+					>
+						Use me
+					</Button>
+				</div>
+				<pre className="ConflictedString">{conflict.topPart}</pre>
 			</div>
-			<div className="Separator">========</div>
-			<div className="BottomPartConflict" style={{ backgroundColor: "pink" }}>
-				<div className="ConflictedString">{conflict.bottomPart}</div>
-				<button
-					onClick={() => {
-						conflict.isTopPart = false;
-						conflict.resolved = true;
-						setConflict({ ...conflict });
-					}}
-				>
-					Выбрать нижнюю
-				</button>
+			<div className="Separator"></div>
+			<div className="BottomPartConflict">
+				<pre className="ConflictedString">{conflict.bottomPart}</pre>
+				<div className="ConflictButtonContainer">
+					<Button
+						style={ButtonStyle.BottomMerge}
+						onClick={() => {
+							conflict.isTopPart = false;
+							conflict.resolved = true;
+							setConflict({ ...conflict });
+						}}
+					>
+						Use me
+					</Button>
+				</div>
 			</div>
 		</div>
 	);
